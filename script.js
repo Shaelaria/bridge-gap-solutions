@@ -50,7 +50,7 @@ syncNavigation();
 
 const copyButton = document.querySelector(".copy-email");
 const copyStatus = document.querySelector(".copy-email-status");
-const emailLink = document.querySelector(".contact-email");
+const emailText = document.querySelector(".contact-email");
 let copyStatusTimer;
 
 // Fallback for browsers or contexts without the asynchronous Clipboard API.
@@ -75,7 +75,7 @@ function copyWithSelection(text) {
 
 // If copying is blocked, select the visible address so it can be copied manually.
 function selectAddress(address) {
-  const text = emailLink.firstChild;
+  const text = emailText.firstChild;
   const range = document.createRange();
   range.setStart(text, 0);
   range.setEnd(text, Math.min(address.length, text.length));
