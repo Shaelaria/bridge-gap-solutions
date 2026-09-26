@@ -47,3 +47,61 @@ document.addEventListener("keydown", (event) => {
 
 mobileLayout.addEventListener("change", syncNavigation);
 syncNavigation();
+
+const copyButton = document.querySelector(".copy-email");
+const copyStatus = document.querySelector(".copy-email-status");
+const emailLink = document.querySelector(".contact-email");
+let copyStatusTimer;
+
+// Fallback for browsers or contexts without the asynchronous Clipboard API.
+function copyWithSelection(text) {
+  const field = document.createElement("textarea");
+  field.value = text;
+  field.setAttribute("readonly", "");
+  field.style.position = "fixed";
+  field.style.opacity = "0";
+  document.body.append(field);
+  field.select();
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch {
+    copied = false;
+  }
+  field.remove();
+  copyButton.focus();
+  return copied;
+}
+
+// If copying is blocked, select the visible address so it can be copied manually.
+function selectAddress(address) {
+  const text = emailLink.firstChild;
+  const range = document.createRange();
+  range.setStart(text, 0);
+  range.setEnd(text, Math.min(address.length, text.length));
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+
+copyButton.addEventListener("click", async () => {
+  const address = copyButton.dataset.copyEmail;
+  clearTimeout(copyStatusTimer);
+  copyStatus.textContent = "";
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(address);
+    copied = true;
+  } catch {
+    copied = copyWithSelection(address);
+  }
+  if (copied) {
+    copyStatus.textContent = "Copied";
+    copyStatusTimer = setTimeout(() => {
+      copyStatus.textContent = "";
+    }, 4000);
+  } else {
+    selectAddress(address);
+    copyStatus.textContent = "Couldn’t copy. Select the address above.";
+  }
+});

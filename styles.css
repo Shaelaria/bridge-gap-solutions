@@ -1006,6 +1006,35 @@ nav a:hover {
   color: var(--orange);
   flex-shrink: 0;
 }
+/* Shown only when the page script can copy; the address stays selectable text. */
+.copy-email-row {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+.js .copy-email-row {
+  display: flex;
+}
+.copy-email {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid #9a9f9f;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 160ms ease;
+}
+.copy-email:hover {
+  border-color: var(--orange);
+}
+.copy-email-status {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
 .contact-location {
   font-size: 0.875rem;
 }
@@ -1039,6 +1068,7 @@ nav a:hover {
   min-height: 44px;
 }
 .contact-section a:focus-visible,
+.contact-section button:focus-visible,
 .site-footer a:focus-visible {
   outline-color: var(--orange);
 }
@@ -1531,7 +1561,8 @@ nav a:hover {
   .menu-toggle,
   .skip-link,
   .hero-aside,
-  .button {
+  .button,
+  .copy-email-row {
     display: none !important;
   }
   .container {
