@@ -233,10 +233,18 @@ nav a:hover {
   text-decoration: underline;
   text-decoration-color: var(--rust);
 }
-.nav-contact {
+/* Contact is the one primary navigation action. */
+nav .nav-contact {
   flex-shrink: 0;
-  gap: 1.25rem;
-  border-bottom: 3px solid var(--orange);
+  padding: 0.55rem 1.25rem;
+  background: var(--orange);
+  color: #00204d;
+  font-weight: 600;
+  border-radius: 3px;
+}
+nav .nav-contact:hover {
+  background: #ff7a30;
+  text-decoration: none;
 }
 .menu-toggle {
   min-height: 44px;
@@ -257,7 +265,6 @@ nav a:hover {
 .hero .aside-heading {
   color: var(--white);
 }
-.hero-audience,
 .hero-legal,
 .hero .credentials dt {
   color: #e5e5e2;
@@ -280,8 +287,8 @@ nav a:hover {
 }
 .hero h1 {
   align-self: start;
-  font-size: clamp(3rem, 4.65vw, 6.5rem);
-  letter-spacing: -0.047em;
+  font-size: clamp(2.6rem, 3.6vw, 5rem);
+  letter-spacing: -0.045em;
   font-weight: 700;
   line-height: 1.06;
 }
@@ -303,11 +310,6 @@ nav a:hover {
   color: var(--white);
   font-size: clamp(1.0625rem, 1.05vw, 1.25rem);
   line-height: 1.6;
-}
-.hero-audience {
-  font-size: 0.875rem;
-  margin-top: 0.75rem;
-  max-width: 65ch;
 }
 .hero-introduction .hero-legal {
   font-size: 0.75rem;
@@ -359,6 +361,15 @@ nav a:hover {
 }
 .button-light:hover {
   background: #ff7a30;
+}
+.button-outline {
+  color: var(--white);
+  background: transparent;
+  border-color: #c7c9c8;
+}
+.button-outline:hover {
+  border-color: var(--orange);
+  background: #0b3a7a;
 }
 .button-dark {
   background: var(--ink);
@@ -470,30 +481,6 @@ nav a:hover {
   margin-right: 0.5rem;
   vertical-align: middle;
 }
-/* A compact statement of responsibility, not another equal split. */
-.intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 3rem;
-  align-items: start;
-}
-.intro h2 {
-  font-size: clamp(1.9rem, 2.35vw, 2.5rem);
-  max-width: 22ch;
-}
-.intro .lead {
-  font-size: clamp(1.125rem, 1.35vw, 1.25rem);
-  line-height: 1.5;
-  color: var(--ink);
-}
-.intro-copy {
-  max-width: 80ch;
-  padding-left: 1.5rem;
-  border-left: 4px solid var(--orange);
-}
-.intro .lead strong {
-  font-weight: 500;
-}
 /* Four concise pathways share one horizontal band, without separate cards. */
 .audience {
   padding-bottom: 1.5rem;
@@ -537,54 +524,6 @@ nav a:hover {
   margin-top: auto;
   padding-top: 0.9rem;
 }
-/* Capabilities form one white register, not six separate cards. */
-#capabilities {
-  padding-block: 2.5rem 3rem;
-  background: var(--white);
-}
-#capabilities .section-heading {
-  display: block;
-}
-#capabilities .section-heading > div {
-  display: block;
-}
-#capabilities .eyebrow {
-  margin-bottom: 1rem;
-}
-.capabilities-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 clamp(1.5rem, 2.5vw, 3rem);
-  border-top: 3px solid var(--ink);
-}
-.capability {
-  display: grid;
-  align-content: start;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  gap: 0.5rem 1rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line);
-  align-items: start;
-}
-.capability p {
-  grid-column: 2;
-}
-.capability .item-number {
-  grid-row: 1 / 3;
-}
-.item-number {
-  font-family: Syne, Arial, sans-serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--rust);
-}
-.capability h3 {
-  font-size: 1.125rem;
-}
-.capability p {
-  font-size: 0.9375rem;
-  max-width: 40ch;
-}
 /* One uninterrupted delivery span; responsibility continues beneath every stage. */
 .delivery-section {
   background: var(--ink);
@@ -598,15 +537,12 @@ nav a:hover {
   color: #ff9b60;
   border-color: #9a9f9f;
 }
-.delivery-section .section-heading {
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-}
 .process {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   list-style: none;
   padding: 0;
-  margin: 2.5rem 0 1.5rem;
+  margin: 2.5rem 0 1.75rem;
 }
 .process li {
   position: relative;
@@ -616,7 +552,7 @@ nav a:hover {
   content: "";
   position: absolute;
   left: 1.5rem;
-  right: -1.5rem;
+  right: 0;
   top: 1.5rem;
   border-top: 2px solid #c7c9c8;
 }
@@ -656,23 +592,34 @@ nav a:hover {
 }
 .process p {
   font-size: 0.9375rem;
-  max-width: 28ch;
+  max-width: 30ch;
 }
 .accountability-note {
-  padding: 1.25rem 0 0;
-  border-top: 1px solid #9a9f9f;
-  font-size: 0.9375rem;
+  padding: 1.1rem 1.35rem;
+  border-left: 5px solid var(--orange);
+  background: #0b3a7a;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.delivery-section .accountability-note {
+  color: white;
 }
 .accountability-note strong {
   color: white;
+  font-weight: 600;
 }
 /* Coverage is a landscape: two broad trade groups, three technical/support
    groups, then two compact operational groups. No factual content is collapsed. */
-#service-categories {
+#services {
   background: var(--white);
 }
-#service-categories .section-heading {
+#services .section-heading {
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+}
+.section-subtitle {
+  color: var(--ink);
+  font-size: 1.0625rem;
+  font-weight: 500;
 }
 .primary-naics {
   padding: 0.9rem 1.25rem;
@@ -720,35 +667,10 @@ nav a:hover {
 .service-groups h3 {
   margin-bottom: 0.5rem;
 }
-.service-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: var(--muted);
+.service-groups p {
   font-size: 0.9375rem;
-  line-height: 1.55;
-}
-.service-list li {
-  position: relative;
-  padding: 0.3rem 0 0.3rem 0.8rem;
-  overflow-wrap: anywhere;
-}
-.service-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.92rem;
-  width: 3px;
-  height: 3px;
-  background: var(--rust);
-}
-.service-groups article:nth-child(-n + 2) .service-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 1.5rem;
-}
-.service-groups article:nth-child(2) .service-list li:first-child {
-  grid-column: 1 / -1;
+  line-height: 1.6;
+  max-width: 62ch;
 }
 .registered-naics {
   border-block: 1px solid var(--ink);
@@ -789,8 +711,12 @@ nav a:hover {
   overflow-wrap: anywhere;
 }
 /* One credential panel: legal identity on the left, verifiable facts on the right. */
-#government .section-heading {
+#contracting-info .section-heading {
   display: block;
+}
+#contracting-info h2,
+#work-with-us h2 {
+  font-size: clamp(1.8rem, 2.2vw, 2.2rem);
 }
 .company-panel {
   border-top: 4px solid var(--orange);
@@ -861,85 +787,106 @@ nav a:hover {
   gap: 1rem 2rem;
   padding: 1.25rem 1.5rem;
 }
-/* Three differentiators, stated once as a compact trust band. */
-.why-section {
-  background: var(--paper);
-  padding-block: 0;
-}
-.why-section .container {
+/* Independent public records sit apart from owner-supplied facts. */
+.verification {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 2rem;
-  align-items: center;
-  padding-block: 1.5rem;
-  border-block: 1px solid var(--line);
-}
-.why-section .section-heading {
-  display: block;
-  margin: 0;
-}
-.why-section h2 {
-  display: flex;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  gap: 0.75rem 2rem;
   align-items: start;
-  gap: 0.8rem;
-  font-size: 1.5rem;
-  line-height: 1.3;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
 }
-.why-section .section-index {
-  margin-top: 0.35rem;
+.verification h3 {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-top: 0.85rem;
 }
-.why-grid {
+.verification-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2.5rem;
+}
+.external-link {
+  display: inline-block;
+  min-height: 44px;
+  padding-block: 0.6rem;
+  line-height: 1.5;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.external-link:hover {
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--rust);
+}
+.external-link > span[aria-hidden="true"] {
+  color: var(--rust);
+  white-space: nowrap;
+}
+.verification-note {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+/* Two ways to join a contract: as a teaming partner or as the delivery team. */
+.section-paper {
+  background: var(--paper);
+}
+.work-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
-.why-grid article {
-  padding-left: 1.25rem;
-  border-left: 3px solid var(--orange);
-}
-.why-grid h3 {
-  font-size: 1.0625rem;
-  line-height: 1.45;
-}
-/* The partnership section owns the submission instructions and one action. */
-.partners {
-  margin-block: 2rem;
-  padding: 1.75rem 2rem;
-  background: white;
-  border: 1px solid var(--line);
-  border-left: 5px solid var(--orange);
-  border-radius: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.4fr);
-  gap: 2.5rem;
-  align-items: center;
-}
-.partners h2,
-#government h2 {
-  font-size: clamp(1.8rem, 2.2vw, 2.2rem);
-}
-.partner-invitation {
+.work-panel {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.75rem 2rem 2rem;
+  background: var(--white);
+  border-top: 4px solid var(--orange);
 }
-.partner-invitation p {
-  flex: 1 1 300px;
-  max-width: 57ch;
-  font-size: 0.9375rem;
+.work-panel h3 {
+  font-family: Syne, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1.35rem, 1.6vw, 1.75rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
 }
-.partner-invitation .text-link {
-  padding: 1rem 1.2rem;
-  background: var(--ink);
-  color: white;
-  text-decoration: none;
+.work-panel p {
+  max-width: 56ch;
 }
-.partner-invitation .text-link:hover {
-  background: #184c82;
-  text-decoration: underline;
+.vendor-checklist {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  line-height: 1.55;
 }
-/* A compact navy close echoes delivery; white keeps contact details prominent. */
+.vendor-checklist li + li {
+  margin-top: 0.3rem;
+}
+.vendor-checklist li::marker {
+  color: var(--rust);
+}
+.work-panel .button {
+  margin-top: auto;
+}
+/* A compact navy close: direct details beside one clear inquiry form. */
 .contact-section {
   background: var(--ink);
   color: white;
@@ -947,9 +894,9 @@ nav a:hover {
 }
 .contact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   gap: 4rem;
-  align-items: center;
+  align-items: start;
 }
 .contact-section .eyebrow,
 .contact-section p {
@@ -960,83 +907,157 @@ nav a:hover {
   border-color: #9a9f9f;
 }
 .contact-grid h2 {
-  font-size: clamp(2.2rem, 3.65vw, 5rem);
-  margin-bottom: 0;
+  font-size: clamp(2.2rem, 3.2vw, 4rem);
 }
-.contact-grid > div:first-child > p:last-child {
-  max-width: 52ch;
+.contact-subtitle {
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+  max-width: 44ch;
 }
 .contact-details {
-  position: relative;
-  padding: 1rem 0 1rem 2.5rem;
-  border-left: 1px solid #9a9f9f;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #9a9f9f;
   color: var(--white);
-}
-.contact-name {
-  font-family: Syne, "Segoe UI", Arial, sans-serif;
-  font-weight: 600;
-  font-size: clamp(1.5rem, 1.8vw, 2rem);
-  letter-spacing: -0.035em;
 }
 .contact-details p + p {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
 }
-.contact-details .contact-legal {
-  font-size: 0.8125rem;
+.contact-name {
+  font-weight: 600;
+  font-size: 1.125rem;
 }
 .contact-details .contact-email {
-  font-size: clamp(1.125rem, 2vw, 2.25rem);
-  line-height: 1.5;
+  font-size: clamp(1.125rem, 1.6vw, 1.75rem);
+  line-height: 1.4;
   font-weight: 500;
-  padding-block: 0.65rem;
-  margin-block: 1.2rem 1rem;
-  border-bottom: 2px solid var(--orange);
   overflow-wrap: anywhere;
 }
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  margin-bottom: 1rem;
-}
-/* Shown only when the page script can copy; the address stays selectable text. */
-.copy-email-row {
-  display: none;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-}
-.js .copy-email-row {
-  display: flex;
-}
-.open-email,
-.copy-email {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0.5rem 1rem;
-  background: transparent;
-  color: var(--white);
-  border: 1px solid #9a9f9f;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 160ms ease;
-}
-.open-email {
-  text-decoration: none;
-}
-.open-email:hover,
-.copy-email:hover {
-  border-color: var(--orange);
-}
-.copy-email-status {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
 .contact-location {
+  font-size: 0.9375rem;
+}
+.contact-details .contact-legal {
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  color: #e5e5e2;
+}
+/* The form sits on white for maximum field legibility. */
+.contact-form {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  background: var(--white);
+  color: var(--ink);
+  border-top: 5px solid var(--orange);
+}
+.contact-section .contact-form p {
+  color: var(--muted);
+}
+.form-title {
+  font-family: Syne, "Segoe UI", Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+.contact-section .form-hint {
+  margin-top: -0.6rem;
   font-size: 0.875rem;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.25rem;
+}
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+.field label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.optional {
+  font-weight: 400;
+  color: var(--muted);
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid #6b7780;
+  border-radius: 3px;
+}
+.contact-form textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 2px;
+  border-color: var(--ink);
+}
+.vendor-fields {
+  display: grid;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--orange);
+  background: var(--paper);
+}
+.vendor-fields legend {
+  padding: 0 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+/* Without JavaScript the vendor fields stay visible and plainly labeled. */
+.js .vendor-fields:not([data-visible="true"]) {
+  display: none;
+}
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+.button-submit {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #00204d;
+  cursor: pointer;
+  padding-inline: 1.6rem;
+}
+.button-submit:hover {
+  background: #ff7a30;
+}
+.button-submit:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+.contact-section .form-status {
+  flex: 1 1 16rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.contact-section .form-status:empty {
+  display: none;
+}
+.contact-section .form-status[data-state="error"] {
+  color: #9b2c00;
+}
+.contact-section .form-status[data-state="success"] {
+  color: #0a5c2b;
 }
 .site-footer {
   background: var(--ink);
@@ -1068,7 +1089,7 @@ nav a:hover {
   min-height: 44px;
 }
 .contact-section a:focus-visible,
-.contact-section button:focus-visible,
+.contact-section .contact-intro :focus-visible,
 .site-footer a:focus-visible {
   outline-color: var(--orange);
 }
@@ -1116,18 +1137,6 @@ nav a:hover {
   .service-groups article:nth-child(-n + 2) {
     grid-column: span 5;
   }
-  .intro-copy {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 2rem;
-    max-width: none;
-  }
-  .intro-copy p {
-    max-width: 49ch;
-  }
-  .intro-copy p + p {
-    margin-top: 0;
-  }
 }
 @media (max-width: 1100px) {
   .container {
@@ -1152,27 +1161,19 @@ nav a:hover {
     column-gap: 2rem;
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   }
-  .intro,
   .section-heading,
-  .partners,
   .contact-grid {
     column-gap: 2.5rem;
   }
   .audience-grid {
     column-gap: 2rem;
   }
-  .capabilities-grid {
+  .process {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2rem;
   }
-  .capability {
-    grid-template-columns: 1.5rem minmax(0, 1fr);
-    gap: 0.5rem 1rem;
-  }
-  .capability p {
-    grid-column: 2;
-  }
-  .item-number {
-    grid-row: 1/3;
+  .process li:nth-child(2)::before {
+    display: none;
   }
   .registered-naics-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1187,8 +1188,19 @@ nav a:hover {
   .company-data .government-primary {
     grid-column: 1/-1;
   }
+  .verification {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+  .verification h3 {
+    padding-top: 0;
+  }
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
   .contact-details {
-    padding-left: 1.5rem;
+    margin-top: 1.5rem;
   }
 }
 @media (max-width: 800px) {
@@ -1220,8 +1232,10 @@ nav a:hover {
     padding: 0.65rem 0.5rem;
     border-top: 1px solid var(--line);
   }
-  .nav-contact {
-    border-bottom: 0;
+  nav .nav-contact {
+    justify-content: center;
+    margin-top: 0.5rem;
+    padding-inline: 1rem;
   }
   .js #primary-nav:not([data-open="true"]) {
     display: none;
@@ -1239,7 +1253,7 @@ nav a:hover {
     margin-bottom: 1.25rem;
   }
   .hero h1 {
-    font-size: clamp(2.2rem, 5.8vw, 3rem);
+    font-size: clamp(2rem, 5.4vw, 2.75rem);
   }
   .hero-introduction {
     align-self: stretch;
@@ -1287,30 +1301,19 @@ nav a:hover {
     padding-block: 0.25rem;
     width: 100%;
   }
-  .intro,
   .section-heading,
-  .delivery-section .section-heading,
-  #service-categories .section-heading,
-  .contact-grid {
+  #services .section-heading {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-  }
-  .intro h2 {
-    max-width: 24ch;
-  }
-  .intro-copy {
-    padding-left: 1.25rem;
+    gap: 1rem;
   }
   .section-heading > p {
     justify-self: start;
     max-width: 65ch;
   }
-  .audience .section-heading > div,
-  #capabilities .section-heading > div {
+  .audience .section-heading > div {
     display: block;
   }
-  .audience .section-heading .eyebrow,
-  #capabilities .eyebrow {
+  .audience .section-heading .eyebrow {
     margin-bottom: 1rem;
   }
   .audience-grid {
@@ -1323,12 +1326,6 @@ nav a:hover {
     border-top: 1px solid var(--line);
     padding-block: 1.4rem;
   }
-  .audience-grid article:nth-child(n + 3) h3 {
-    font-family: inherit;
-    font-size: 1.125rem;
-    letter-spacing: -0.015em;
-  }
-
   .process {
     display: block;
     margin-top: 2rem;
@@ -1339,7 +1336,9 @@ nav a:hover {
     gap: 0.3rem 1.25rem;
     padding: 0 0 2rem;
   }
-  .process li::before {
+  .process li::before,
+  .process li:nth-child(2)::before {
+    display: block;
     border: 0;
     border-radius: 0;
     width: 2px;
@@ -1349,6 +1348,9 @@ nav a:hover {
     bottom: 0;
     left: 1.5rem;
     right: auto;
+  }
+  .process li:last-child::before {
+    display: none;
   }
   .process li::after {
     display: none;
@@ -1383,24 +1385,11 @@ nav a:hover {
   .registered-naics-list {
     grid-template-columns: minmax(0, 1fr);
   }
-  .why-section .container {
+  .work-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-  }
-  .partners {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
   }
   .contact-section {
     padding-block: 2.5rem;
-  }
-  .contact-details {
-    padding: 1.5rem 0 0;
-    border-left: 0;
-    border-top: 1px solid #9a9f9f;
-  }
-  .contact-grid h2 {
-    max-width: 22ch;
   }
   .footer-inner {
     flex-wrap: wrap;
@@ -1447,7 +1436,7 @@ nav a:hover {
     letter-spacing: 0.06em;
   }
   .hero h1 {
-    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
   }
   .credentials-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1455,7 +1444,7 @@ nav a:hover {
   .actions {
     align-items: stretch;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.6rem;
   }
   .button {
     padding: 0.9rem;
@@ -1465,29 +1454,11 @@ nav a:hover {
   .eyebrow {
     margin-bottom: 1.1rem;
   }
-  .intro .lead {
-    font-size: 1.125rem;
-  }
-  .intro-copy {
-    padding-left: 1rem;
-  }
   .audience-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .capabilities-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .capability:nth-child(odd) {
-    border-right: 0;
-  }
-  .partners {
-    padding: 1.5rem 1rem;
-  }
   .service-groups {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .service-groups article:nth-child(-n + 2) .service-list {
-    column-gap: 1rem;
   }
   .company-data {
     grid-template-columns: minmax(0, 1fr);
@@ -1503,31 +1474,30 @@ nav a:hover {
     flex-direction: column;
     padding-inline: 1rem;
   }
-  .why-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.75rem;
+  .verification {
+    padding-inline: 1rem;
   }
-  .why-grid article {
-    padding-left: 0;
-    border-left: 0;
+  .work-panel {
+    padding: 1.4rem 1.1rem 1.5rem;
   }
-  .partner-invitation .text-link {
+  .work-panel .button {
     width: 100%;
   }
-  .desktop-break {
-    display: none;
-  }
   .contact-grid h2 {
-    font-size: clamp(2rem, 8vw, 2.7rem);
+    font-size: clamp(1.9rem, 8vw, 2.5rem);
   }
-  .contact-details {
-    padding-top: 1.5rem;
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .contact-name {
-    font-size: 1.3rem;
+  .contact-form {
+    padding: 1.1rem;
   }
-  .contact-details .contact-email {
-    font-size: 1.15rem;
+  .vendor-fields {
+    padding-inline: 0.8rem;
+  }
+  .button-submit {
+    width: 100%;
+    justify-content: center;
   }
   .footer-inner a {
     margin-left: 0;
@@ -1561,7 +1531,8 @@ nav a:hover {
   .skip-link,
   .hero-aside,
   .button,
-  .contact-actions {
+  .contact-form,
+  .verification-links .visually-hidden {
     display: none !important;
   }
   .container {
@@ -1574,19 +1545,22 @@ nav a:hover {
   }
   body,
   .hero,
-  #capabilities,
   .delivery-section,
-  #service-categories,
-  .why-section,
+  #services,
+  .section-paper,
   .contact-section,
-  .credentials {
+  .credentials,
+  .accountability-note,
+  .verification,
+  .work-panel {
     background: white;
     color: black;
   }
   .delivery-section p,
+  .delivery-section .accountability-note,
+  .accountability-note strong,
   .eyebrow,
   .section-index,
-  .item-number,
   .credentials dt,
   .credentials dd,
   .contact-section p {
@@ -1606,8 +1580,6 @@ nav a:hover {
   }
   .hero-grid,
   .hero-copy,
-  .intro,
-  .partners,
   .contact-grid {
     display: block;
   }
@@ -1617,16 +1589,22 @@ nav a:hover {
   .section-heading {
     margin-bottom: 1rem;
   }
-  .capability,
   .process li,
-  .service-groups article {
+  .service-groups article,
+  .work-panel {
     break-inside: avoid;
   }
   h2,
   h3 {
     break-after: avoid;
   }
-  .partner-invitation,
+  /* Show where each external verification link goes on paper. */
+  .external-link::after {
+    content: " (" attr(href) ")";
+    font-weight: 400;
+    font-size: 0.75rem;
+    overflow-wrap: anywhere;
+  }
   .contact-details {
     margin-top: 1rem;
   }

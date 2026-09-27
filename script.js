@@ -48,60 +48,82 @@ document.addEventListener("keydown", (event) => {
 mobileLayout.addEventListener("change", syncNavigation);
 syncNavigation();
 
-const copyButton = document.querySelector(".copy-email");
-const copyStatus = document.querySelector(".copy-email-status");
-const emailText = document.querySelector(".contact-email");
-let copyStatusTimer;
+// Contact form. The endpoint lives only in the form's action attribute
+// (see the FORMSPREE ENDPOINT comment in index.html).
+const contactForm = document.querySelector("#contact-form");
+const inquiryType = contactForm.querySelector("#inquiry-type");
+const vendorFields = contactForm.querySelector("#vendor-fields");
+const formStatus = contactForm.querySelector(".form-status");
+const submitButton = contactForm.querySelector('[type="submit"]');
+const inquiryOptions = {
+  government: "Government / Contracting Officer",
+  teaming: "Prime Contractor / Teaming",
+  vendor: "Vendor / Subcontractor",
+  general: "General Inquiry",
+};
+const vendorOption = inquiryOptions.vendor;
+const fallbackMessage = "Please email nick@chameleonlabs.ai directly.";
 
-// Fallback for browsers or contexts without the asynchronous Clipboard API.
-function copyWithSelection(text) {
-  const field = document.createElement("textarea");
-  field.value = text;
-  field.setAttribute("readonly", "");
-  field.style.position = "fixed";
-  field.style.opacity = "0";
-  document.body.append(field);
-  field.select();
-  let copied = false;
-  try {
-    copied = document.execCommand("copy");
-  } catch {
-    copied = false;
-  }
-  field.remove();
-  copyButton.focus();
-  return copied;
+function syncVendorFields() {
+  const isVendor = inquiryType.value === vendorOption;
+  vendorFields.dataset.visible = String(isVendor);
+  vendorFields.disabled = !isVendor;
 }
 
-// If copying is blocked, select the visible address so it can be copied manually.
-function selectAddress(address) {
-  const text = emailText.firstChild;
-  const range = document.createRange();
-  range.setStart(text, 0);
-  range.setEnd(text, Math.min(address.length, text.length));
-  const selection = window.getSelection();
-  selection.removeAllRanges();
-  selection.addRange(range);
+function setStatus(message, state) {
+  formStatus.textContent = message;
+  formStatus.dataset.state = state;
 }
 
-copyButton.addEventListener("click", async () => {
-  const address = copyButton.dataset.copyEmail;
-  clearTimeout(copyStatusTimer);
-  copyStatus.textContent = "";
-  let copied = false;
-  try {
-    await navigator.clipboard.writeText(address);
-    copied = true;
-  } catch {
-    copied = copyWithSelection(address);
+// Conversation CTAs keep their #contact link and preselect the inquiry type.
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[data-inquiry]");
+  const option = link && inquiryOptions[link.dataset.inquiry];
+  if (!option) return;
+  inquiryType.value = option;
+  syncVendorFields();
+  setStatus("", "");
+});
+
+inquiryType.addEventListener("change", syncVendorFields);
+
+function configuredEndpoint() {
+  const action = (contactForm.getAttribute("action") || "").trim();
+  return /^https:\/\//i.test(action) ? action : "";
+}
+
+contactForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const endpoint = configuredEndpoint();
+  if (!endpoint) {
+    setStatus(
+      `This form is not connected yet, so nothing was sent. ${fallbackMessage}`,
+      "error",
+    );
+    return;
   }
-  if (copied) {
-    copyStatus.textContent = "Copied";
-    copyStatusTimer = setTimeout(() => {
-      copyStatus.textContent = "";
-    }, 4000);
-  } else {
-    selectAddress(address);
-    copyStatus.textContent = "Couldn’t copy. Select the address above.";
+  submitButton.disabled = true;
+  setStatus("Sending…", "pending");
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      body: new FormData(contactForm),
+      headers: { Accept: "application/json" },
+    });
+    if (!response.ok)
+      throw new Error(`Form endpoint returned ${response.status}`);
+    contactForm.reset();
+    syncVendorFields();
+    setStatus(
+      "Thank you. Your message was sent. We reply by email.",
+      "success",
+    );
+  } catch (error) {
+    console.error("Contact form submission failed:", error);
+    setStatus(`Your message could not be sent. ${fallbackMessage}`, "error");
+  } finally {
+    submitButton.disabled = false;
   }
 });
+
+syncVendorFields();
