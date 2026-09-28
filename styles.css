@@ -497,6 +497,13 @@ nav .nav-contact:hover {
 .audience .section-heading .eyebrow {
   margin: 0;
 }
+.audience .section-heading > .section-subtitle {
+  justify-self: start;
+  max-width: 72ch;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-weight: 400;
+}
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
