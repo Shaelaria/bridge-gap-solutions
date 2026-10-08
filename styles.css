@@ -311,6 +311,17 @@ nav .nav-contact:hover {
   font-size: clamp(1.0625rem, 1.05vw, 1.25rem);
   line-height: 1.6;
 }
+/* The business-model boundary sits directly under the subheadline. */
+.hero-disclaimer {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border-left: 4px solid var(--orange);
+  background: #0b3a7a;
+  color: var(--white);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
 .hero-introduction .hero-legal {
   font-size: 0.75rem;
   margin-top: 1.1rem;
@@ -506,7 +517,7 @@ nav .nav-contact:hover {
 }
 .audience-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
 }
 .audience-grid article {
@@ -530,6 +541,15 @@ nav .nav-contact:hover {
 .audience-grid .text-link {
   margin-top: auto;
   padding-top: 0.9rem;
+}
+.audience-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.75rem;
+  margin-top: auto;
+}
+.audience-links .text-link {
+  margin-top: 0;
 }
 /* One uninterrupted delivery span; responsibility continues beneath every stage. */
 .delivery-section {
@@ -890,6 +910,10 @@ nav .nav-contact:hover {
 .vendor-checklist li::marker {
   color: var(--rust);
 }
+.work-panel .work-note {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
 .work-panel .button {
   margin-top: auto;
 }
@@ -942,6 +966,11 @@ nav .nav-contact:hover {
 }
 .contact-location {
   font-size: 0.9375rem;
+}
+.contact-details .contact-scope {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  max-width: 44ch;
 }
 .contact-details .contact-legal {
   margin-top: 1rem;
@@ -1324,7 +1353,7 @@ nav .nav-contact:hover {
     margin-bottom: 1rem;
   }
   .audience-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 0 2rem;
   }
   .audience-grid article:nth-child(n) {

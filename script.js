@@ -56,9 +56,9 @@ const vendorFields = contactForm.querySelector("#vendor-fields");
 const formStatus = contactForm.querySelector(".form-status");
 const submitButton = contactForm.querySelector('[type="submit"]');
 const inquiryOptions = {
-  government: "Government / Contracting Officer",
+  government: "Federal Agency / Contracting Officer",
   teaming: "Prime Contractor / Teaming",
-  vendor: "Vendor / Subcontractor",
+  vendor: "Subcontractor / Company Capabilities",
   general: "General Inquiry",
 };
 const vendorOption = inquiryOptions.vendor;
