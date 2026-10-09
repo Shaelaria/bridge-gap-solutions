@@ -540,21 +540,6 @@ nav .nav-contact:hover {
   font-size: 1.0625rem;
   max-width: 46ch;
 }
-.audience-points {
-  overflow-wrap: anywhere;
-  margin: 0.75rem 0 0;
-  padding-left: 1.2rem;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.55;
-  max-width: 46ch;
-}
-.audience-points li + li {
-  margin-top: 0.35rem;
-}
-.audience-points li::marker {
-  color: var(--rust);
-}
 .audience-grid .text-link {
   margin-top: auto;
   padding-top: 0.9rem;
@@ -875,6 +860,14 @@ nav .nav-contact:hover {
 }
 .company-data > div:nth-child(n + 5) {
   border-top: 1px solid var(--line);
+}
+.naics-context {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
 }
 .company-data .government-primary {
   grid-column: 1 / -1;
