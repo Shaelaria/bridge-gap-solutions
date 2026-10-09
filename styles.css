@@ -554,6 +554,75 @@ nav .nav-contact:hover {
 .audience-links .text-link {
   margin-top: 0;
 }
+/* A short numbered path under each audience, then a jump to its FAQ group. */
+.audience-how {
+  align-self: stretch;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.audience-how h4 {
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+.audience-steps {
+  list-style: none;
+  counter-reset: audience-step;
+  margin: 0;
+  padding: 0;
+  max-width: 46ch;
+}
+.audience-steps li {
+  counter-increment: audience-step;
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: 0.75rem;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.audience-steps li + li {
+  margin-top: 0.6rem;
+}
+.audience-steps li::before {
+  content: counter(audience-step);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.faq-link,
+.faq-back {
+  display: inline-block;
+  min-height: 44px;
+  padding-block: 0.65rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--rust);
+}
+.audience-grid .faq-link {
+  margin-top: 0.35rem;
+}
+.faq-link > span,
+.faq-back > span {
+  margin-left: 0.4rem;
+}
+.faq-link:hover,
+.faq-back:hover {
+  text-decoration-thickness: 2px;
+}
 /* One uninterrupted delivery span; responsibility continues beneath every stage. */
 .delivery-section {
   background: var(--ink);
@@ -1179,6 +1248,70 @@ nav .nav-contact:hover {
 .contact-section .form-status[data-state="success"] {
   color: #0a5c2b;
 }
+/* Questions grouped by audience; native disclosures work without script. */
+.faq-section {
+  background: var(--white);
+}
+.faq-group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1rem 3rem;
+  padding-block: 1.75rem;
+  border-top: 2px solid var(--ink);
+}
+.faq-group:last-child {
+  padding-bottom: 0;
+}
+.faq-group-heading h3 {
+  font-family: Syne, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.35rem;
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-item:first-child {
+  border-top: 1px solid var(--line);
+}
+.faq-item summary {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding: 1rem 2.75rem 1rem 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.45;
+  list-style: none;
+  overflow-wrap: anywhere;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.5rem;
+  top: 0.85rem;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--rust);
+}
+.faq-item[open] summary::after {
+  content: "\2212";
+}
+.faq-item summary:hover {
+  color: var(--rust);
+}
+.faq-answer {
+  padding: 0 2.75rem 1.25rem 0;
+}
+.faq-answer p {
+  max-width: 68ch;
+  font-size: 1rem;
+}
 .site-footer {
   background: var(--ink);
   color: white;
@@ -1437,6 +1570,16 @@ nav .nav-contact:hover {
     grid-row: auto;
     border-top: 1px solid var(--line);
     padding-block: 1.4rem;
+  }
+  .audience-how {
+    margin-top: 1rem;
+  }
+  .faq-group {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 1.5rem;
+  }
+  .faq-answer {
+    padding-right: 0;
   }
   .process {
     display: block;
@@ -1710,6 +1853,7 @@ nav .nav-contact:hover {
     margin-bottom: 1rem;
   }
   .process li,
+  .faq-item,
   .service-groups article,
   .assurance-panel,
   .work-panel {
@@ -1728,5 +1872,15 @@ nav .nav-contact:hover {
   }
   .contact-details {
     margin-top: 1rem;
+  }
+  /* Print every FAQ answer, even when its question is collapsed. */
+  .faq-item::details-content {
+    content-visibility: visible;
+    display: block;
+  }
+  .faq-item summary::after,
+  .faq-link,
+  .faq-back {
+    display: none;
   }
 }
