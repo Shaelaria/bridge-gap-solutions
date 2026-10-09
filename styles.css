@@ -117,7 +117,7 @@ details {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   line-height: 1.45;
   letter-spacing: 0.12em;
@@ -148,6 +148,15 @@ details {
 .section-heading > p {
   max-width: 48ch;
   justify-self: end;
+}
+/* A subtitle reads with its title rather than across a wide gap. */
+.section-heading:has(> .section-subtitle) {
+  display: block;
+}
+.section-heading > .section-subtitle {
+  justify-self: start;
+  max-width: 64ch;
+  margin-top: 1rem;
 }
 .skip-link {
   position: absolute;
@@ -395,7 +404,7 @@ nav .nav-contact:hover {
   display: inline-block;
   min-height: 44px;
   padding-block: 0.65rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .text-link > span {
@@ -554,6 +563,25 @@ nav .nav-contact:hover {
 .audience-links .text-link {
   margin-top: 0;
 }
+/* Side by side, each audience's title, intro, steps, and links share rows,
+   so the three walkthroughs start and end on the same lines. */
+@media (min-width: 801px) {
+  .audience-grid {
+    row-gap: 0;
+  }
+  .audience-grid article {
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    justify-items: start;
+  }
+  .audience-grid .audience-how {
+    justify-self: stretch;
+  }
+  .audience-grid article > :last-child {
+    align-self: end;
+  }
+}
 /* A short numbered path under each audience, then a jump to its FAQ group. */
 .audience-how {
   align-self: stretch;
@@ -563,7 +591,7 @@ nav .nav-contact:hover {
 }
 .audience-how h4 {
   margin-bottom: 0.75rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   line-height: 1.45;
   letter-spacing: 0.12em;
@@ -575,30 +603,42 @@ nav .nav-contact:hover {
   counter-reset: audience-step;
   margin: 0;
   padding: 0;
-  max-width: 46ch;
+  max-width: 48ch;
 }
 .audience-steps li {
   counter-increment: audience-step;
+  position: relative;
   display: grid;
-  grid-template-columns: 1.75rem minmax(0, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: 1.875rem minmax(0, 1fr);
+  gap: 0.85rem;
+  padding-bottom: 0.85rem;
   overflow-wrap: anywhere;
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
 }
-.audience-steps li + li {
-  margin-top: 0.6rem;
+.audience-steps li:last-child {
+  padding-bottom: 0;
+}
+/* Connector between step numbers, so the steps read as one sequence. */
+.audience-steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(0.9375rem - 0.5px);
+  top: 1.875rem;
+  bottom: 0;
+  border-left: 1px solid var(--line);
 }
 .audience-steps li::before {
   content: counter(audience-step);
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  font-size: 0.8125rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-top: -0.15rem;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.875rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -608,7 +648,7 @@ nav .nav-contact:hover {
   display: inline-block;
   min-height: 44px;
   padding-block: 0.65rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--rust);
 }
@@ -752,7 +792,7 @@ nav .nav-contact:hover {
 }
 .services-tier {
   margin-bottom: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -802,11 +842,11 @@ nav .nav-contact:hover {
   max-width: 62ch;
 }
 .service-additional p {
-  font-size: 1rem;
+  font-size: 1.0625rem;
 }
 .service-groups .group-naics {
   margin-top: 0.75rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
@@ -855,7 +895,7 @@ nav .nav-contact:hover {
   gap: 1rem;
   padding-block: 0.8rem;
   border-top: 1px solid var(--line);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 .naics-list dt {
@@ -904,7 +944,7 @@ nav .nav-contact:hover {
 }
 .company-data dt {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.5rem;
@@ -934,7 +974,7 @@ nav .nav-contact:hover {
 .naics-context {
   display: block;
   margin-top: 0.35rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: var(--muted);
@@ -963,7 +1003,7 @@ nav .nav-contact:hover {
   background: var(--paper);
 }
 .verification h3 {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -998,7 +1038,7 @@ nav .nav-contact:hover {
   white-space: nowrap;
 }
 .verification-note {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.4;
 }
 .visually-hidden {
@@ -1037,7 +1077,7 @@ nav .nav-contact:hover {
   letter-spacing: -0.03em;
 }
 .work-panel p {
-  max-width: 56ch;
+  max-width: 64ch;
   font-size: 1.0625rem;
 }
 .work-checklist {
@@ -1057,7 +1097,7 @@ nav .nav-contact:hover {
 }
 .work-panel .work-note {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.0625rem;
 }
 .work-panel .button {
   margin-top: auto;
@@ -1119,7 +1159,7 @@ nav .nav-contact:hover {
 }
 .contact-details .contact-legal {
   margin-top: 1rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: #e5e5e2;
 }
 /* The form sits on white for maximum field legibility. */
@@ -1142,7 +1182,7 @@ nav .nav-contact:hover {
 }
 .contact-section .form-hint {
   margin-top: -0.6rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .field-row {
   display: grid;
@@ -1154,7 +1194,7 @@ nav .nav-contact:hover {
   gap: 0.4rem;
 }
 .field label {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 600;
 }
 .optional {
@@ -1196,7 +1236,7 @@ nav .nav-contact:hover {
 }
 .vendor-fields legend {
   padding: 0 0.4rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1206,7 +1246,7 @@ nav .nav-contact:hover {
 }
 .contact-section .fieldset-hint,
 .contact-section .field-hint {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 /* Without JavaScript the vendor fields stay visible and plainly labeled. */
@@ -1279,8 +1319,8 @@ nav .nav-contact:hover {
   position: relative;
   display: block;
   cursor: pointer;
-  padding: 1rem 2.75rem 1rem 0;
-  font-size: 1.0625rem;
+  padding: 1.1rem 3.25rem 1.1rem 0;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.45;
   list-style: none;
@@ -1292,25 +1332,33 @@ nav .nav-contact:hover {
 .faq-item summary::after {
   content: "+";
   position: absolute;
-  right: 0.5rem;
-  top: 0.85rem;
-  font-size: 1.375rem;
+  right: 0.25rem;
+  top: 1rem;
+  display: grid;
+  place-items: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border: 1px solid var(--rust);
+  border-radius: 50%;
+  font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1;
   color: var(--rust);
 }
 .faq-item[open] summary::after {
   content: "\2212";
+  background: var(--rust);
+  color: var(--white);
 }
 .faq-item summary:hover {
   color: var(--rust);
 }
 .faq-answer {
-  padding: 0 2.75rem 1.25rem 0;
+  padding: 0 3.25rem 1.35rem 0;
 }
 .faq-answer p {
   max-width: 68ch;
-  font-size: 1rem;
+  font-size: 1.0625rem;
 }
 .site-footer {
   background: var(--ink);
@@ -1325,7 +1373,7 @@ nav .nav-contact:hover {
 }
 .footer-inner p,
 .footer-inner a {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: #e5e5e2;
   line-height: 1.6;
 }
