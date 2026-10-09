@@ -45,13 +45,15 @@ button {
 h1,
 h2,
 h3,
+h4,
 p,
 dl {
   margin: 0;
 }
 h1,
 h2,
-h3 {
+h3,
+h4 {
   overflow-wrap: anywhere;
   text-wrap: balance;
 }
@@ -115,7 +117,7 @@ details {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.45;
   letter-spacing: 0.12em;
@@ -318,12 +320,12 @@ nav .nav-contact:hover {
   border-left: 4px solid var(--orange);
   background: #0b3a7a;
   color: var(--white);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
 }
 .hero-introduction .hero-legal {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin-top: 1.1rem;
 }
 .actions {
@@ -363,7 +365,7 @@ nav .nav-contact:hover {
   gap: 0.5rem;
   white-space: nowrap;
   flex-shrink: 0;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
 }
 .button-light {
   color: #00204d;
@@ -393,7 +395,7 @@ nav .nav-contact:hover {
   display: inline-block;
   min-height: 44px;
   padding-block: 0.65rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
 }
 .text-link > span {
@@ -469,7 +471,7 @@ nav .nav-contact:hover {
 }
 .credentials dt {
   color: var(--muted);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.3rem;
@@ -535,8 +537,23 @@ nav .nav-contact:hover {
   margin-bottom: 0.65rem;
 }
 .audience-grid p {
-  font-size: 0.9375rem;
-  max-width: 42ch;
+  font-size: 1.0625rem;
+  max-width: 46ch;
+}
+.audience-points {
+  overflow-wrap: anywhere;
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: 46ch;
+}
+.audience-points li + li {
+  margin-top: 0.35rem;
+}
+.audience-points li::marker {
+  color: var(--rust);
 }
 .audience-grid .text-link {
   margin-top: auto;
@@ -600,7 +617,7 @@ nav .nav-contact:hover {
   place-items: center;
   width: 3rem;
   height: 3rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.25rem;
   background: var(--ink);
   border: 1px solid #c7c9c8;
   font-size: 1rem;
@@ -618,14 +635,14 @@ nav .nav-contact:hover {
   margin-bottom: 0.75rem;
 }
 .process p {
-  font-size: 0.9375rem;
-  max-width: 30ch;
+  font-size: 1.0625rem;
+  max-width: 32ch;
 }
 .accountability-note {
   padding: 1.1rem 1.35rem;
   border-left: 5px solid var(--orange);
   background: #0b3a7a;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
 }
 .delivery-section .accountability-note {
@@ -635,50 +652,91 @@ nav .nav-contact:hover {
   color: white;
   font-weight: 600;
 }
-/* Coverage is a landscape: two broad trade groups, three technical/support
-   groups, then two compact operational groups. No factual content is collapsed. */
+.assurance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.assurance-panel {
+  padding: 1.5rem 1.75rem;
+  background: #0b3a7a;
+  border-top: 3px solid #ff9b60;
+}
+.assurance-panel h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: white;
+}
+.assurance-panel ul {
+  overflow-wrap: anywhere;
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  color: #e5e5e2;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+.assurance-panel li + li {
+  margin-top: 0.35rem;
+}
+.assurance-panel li::marker {
+  color: #ff9b60;
+}
+/* Two focus areas lead; the other registered service groups follow in a
+   compact row. No registered code is hidden from the full disclosure. */
 #services {
   background: var(--white);
+  counter-reset: service;
 }
 #services .section-heading {
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
 }
 .section-subtitle {
   color: var(--ink);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 500;
 }
-.primary-naics {
-  padding: 0.9rem 1.25rem;
-  border-left: 5px solid var(--orange);
-  background: var(--paper);
-  color: var(--ink);
-  margin-bottom: 1.5rem;
-}
-.primary-naics strong {
+.services-tier {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+.service-focus + .services-tier {
+  margin-top: 2rem;
+}
+.tier-note {
+  margin-bottom: 0.75rem;
+  max-width: 72ch;
 }
 .service-groups {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0 2.5rem;
-  counter-reset: service;
+}
+.service-focus {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.service-additional {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 2rem;
 }
 .service-groups article {
   position: relative;
-  grid-column: span 2;
   padding: 1.35rem 0 1.35rem 2rem;
   border-top: 1px solid var(--line);
   counter-increment: service;
 }
-.service-groups article:nth-child(-n + 2),
-.service-groups article:nth-child(n + 6) {
-  grid-column: span 3;
-}
-.service-groups article:nth-child(-n + 2) {
+.service-focus article {
   border-top: 2px solid var(--ink);
 }
-.service-groups article:nth-child(-n + 2) h3 {
+.service-groups h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.service-focus h4 {
   font-size: 1.35rem;
 }
 .service-groups article::before {
@@ -691,13 +749,30 @@ nav .nav-contact:hover {
   font-weight: 600;
   color: var(--rust);
 }
-.service-groups h3 {
+.service-groups h4 {
   margin-bottom: 0.5rem;
 }
 .service-groups p {
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
   max-width: 62ch;
+}
+.service-additional p {
+  font-size: 1rem;
+}
+.service-groups .group-naics {
+  margin-top: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.naics-note {
+  max-width: 80ch;
+  padding: 0 0.5rem 1rem;
+}
+.naics-note p + p {
+  margin-top: 0.5rem;
 }
 .registered-naics {
   border-block: 1px solid var(--ink);
@@ -725,7 +800,7 @@ nav .nav-contact:hover {
   gap: 1rem;
   padding-block: 0.8rem;
   border-top: 1px solid var(--line);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
 }
 .naics-list dt {
@@ -774,7 +849,7 @@ nav .nav-contact:hover {
 }
 .company-data dt {
   color: var(--muted);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.5rem;
@@ -825,7 +900,7 @@ nav .nav-contact:hover {
   background: var(--paper);
 }
 .verification h3 {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -857,7 +932,7 @@ nav .nav-contact:hover {
   white-space: nowrap;
 }
 .verification-note {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.4;
 }
 .visually-hidden {
@@ -897,22 +972,26 @@ nav .nav-contact:hover {
 }
 .work-panel p {
   max-width: 56ch;
+  font-size: 1.0625rem;
 }
-.vendor-checklist {
+.work-checklist {
+  align-self: stretch;
+  overflow-wrap: anywhere;
   margin: 0;
   padding-left: 1.2rem;
   color: var(--muted);
   line-height: 1.55;
+  font-size: 1.0625rem;
 }
-.vendor-checklist li + li {
+.work-checklist li + li {
   margin-top: 0.3rem;
 }
-.vendor-checklist li::marker {
+.work-checklist li::marker {
   color: var(--rust);
 }
 .work-panel .work-note {
   color: var(--muted);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .work-panel .button {
   margin-top: auto;
@@ -965,16 +1044,16 @@ nav .nav-contact:hover {
   overflow-wrap: anywhere;
 }
 .contact-location {
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .contact-details .contact-scope {
   margin-top: 1rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   max-width: 44ch;
 }
 .contact-details .contact-legal {
   margin-top: 1rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: #e5e5e2;
 }
 /* The form sits on white for maximum field legibility. */
@@ -997,7 +1076,7 @@ nav .nav-contact:hover {
 }
 .contact-section .form-hint {
   margin-top: -0.6rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 .field-row {
   display: grid;
@@ -1009,7 +1088,7 @@ nav .nav-contact:hover {
   gap: 0.4rem;
 }
 .field label {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .optional {
@@ -1051,10 +1130,15 @@ nav .nav-contact:hover {
 }
 .vendor-fields legend {
   padding: 0 0.4rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+.contact-section .fieldset-hint,
+.contact-section .field-hint {
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 /* Without JavaScript the vendor fields stay visible and plainly labeled. */
 .js .vendor-fields:not([data-visible="true"]) {
@@ -1082,7 +1166,7 @@ nav .nav-contact:hover {
 }
 .contact-section .form-status {
   flex: 1 1 16rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -1108,7 +1192,7 @@ nav .nav-contact:hover {
 }
 .footer-inner p,
 .footer-inner a {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: #e5e5e2;
   line-height: 1.6;
 }
@@ -1163,17 +1247,6 @@ nav .nav-contact:hover {
     grid-area: 3 / 7 / 4 / 13;
   }
 }
-@media (min-width: 1600px) {
-  .service-groups {
-    grid-template-columns: repeat(10, minmax(0, 1fr));
-  }
-  .service-groups article:nth-child(n) {
-    grid-column: span 2;
-  }
-  .service-groups article:nth-child(-n + 2) {
-    grid-column: span 5;
-  }
-}
 @media (max-width: 1100px) {
   .container {
     width: calc(100% - 3rem);
@@ -1213,6 +1286,9 @@ nav .nav-contact:hover {
   }
   .registered-naics-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-additional {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .company-data {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1316,7 +1392,7 @@ nav .nav-contact:hover {
     font-size: 0.9375rem;
   }
   .credentials dt {
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
   }
   .aside-heading {
     min-height: 78px;
@@ -1405,18 +1481,20 @@ nav .nav-contact:hover {
   .process li:last-child {
     padding-bottom: 0;
   }
-  .service-groups {
+  .service-focus {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .service-additional {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2rem;
   }
-  .service-groups article:nth-child(n) {
-    grid-column: auto;
+  .service-focus h4 {
+    font-size: 1.2rem;
   }
-  .service-groups article:last-child {
-    grid-column: 1/-1;
+  .assurance-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .service-groups article:nth-child(-n + 2) h3 {
-    font-size: 1.125rem;
+  .assurance-panel {
+    padding: 1.25rem;
   }
   .registered-naics-list {
     grid-template-columns: minmax(0, 1fr);
@@ -1493,7 +1571,7 @@ nav .nav-contact:hover {
   .audience-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .service-groups {
+  .service-additional {
     grid-template-columns: minmax(0, 1fr);
   }
   .company-data {
@@ -1515,6 +1593,9 @@ nav .nav-contact:hover {
   }
   .work-panel {
     padding: 1.4rem 1.1rem 1.5rem;
+  }
+  .assurance-panel {
+    padding: 1.25rem 1.1rem;
   }
   .work-panel .button {
     width: 100%;
@@ -1587,6 +1668,7 @@ nav .nav-contact:hover {
   .contact-section,
   .credentials,
   .accountability-note,
+  .assurance-panel,
   .verification,
   .work-panel {
     background: white;
@@ -1595,6 +1677,8 @@ nav .nav-contact:hover {
   .delivery-section p,
   .delivery-section .accountability-note,
   .accountability-note strong,
+  .assurance-panel h3,
+  .assurance-panel ul,
   .eyebrow,
   .section-index,
   .credentials dt,
@@ -1627,6 +1711,7 @@ nav .nav-contact:hover {
   }
   .process li,
   .service-groups article,
+  .assurance-panel,
   .work-panel {
     break-inside: avoid;
   }

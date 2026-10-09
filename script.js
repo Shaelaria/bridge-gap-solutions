@@ -53,6 +53,8 @@ syncNavigation();
 const contactForm = document.querySelector("#contact-form");
 const inquiryType = contactForm.querySelector("#inquiry-type");
 const vendorFields = contactForm.querySelector("#vendor-fields");
+const companyInput = contactForm.querySelector("#form-company");
+const companyOptional = contactForm.querySelector("#company-optional");
 const formStatus = contactForm.querySelector(".form-status");
 const submitButton = contactForm.querySelector('[type="submit"]');
 const inquiryOptions = {
@@ -68,6 +70,9 @@ function syncVendorFields() {
   const isVendor = inquiryType.value === vendorOption;
   vendorFields.dataset.visible = String(isVendor);
   vendorFields.disabled = !isVendor;
+  // Subcontractor submissions come from companies, so the company name is required.
+  companyInput.required = isVendor;
+  companyOptional.hidden = isVendor;
 }
 
 function setStatus(message, state) {
