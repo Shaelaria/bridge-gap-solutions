@@ -343,7 +343,7 @@ nav .nav-contact:hover {
   min-height: 48px;
   max-width: 100%;
   padding: 1rem 1.2rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.4;
   font-weight: 600;
   text-decoration: none;
@@ -541,6 +541,7 @@ nav .nav-contact:hover {
   max-width: 46ch;
 }
 .audience-grid .text-link {
+  font-size: 1rem;
   margin-top: auto;
   padding-top: 0.9rem;
 }
@@ -671,7 +672,6 @@ nav .nav-contact:hover {
    compact row. No registered code is hidden from the full disclosure. */
 #services {
   background: var(--white);
-  counter-reset: service;
 }
 #services .section-heading {
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
@@ -689,12 +689,10 @@ nav .nav-contact:hover {
   text-transform: uppercase;
   color: var(--rust);
 }
-.service-focus + .services-tier {
-  margin-top: 2rem;
-}
 .tier-note {
-  margin-bottom: 0.75rem;
+  margin: 0 0 0.5rem;
   max-width: 72ch;
+  padding-inline: 0.5rem;
 }
 .service-groups {
   display: grid;
@@ -704,14 +702,16 @@ nav .nav-contact:hover {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .service-additional {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 2rem;
+  padding: 0 0.5rem 0.5rem;
+}
+.service-groups.service-additional article {
+  padding-block: 1rem;
 }
 .service-groups article {
-  position: relative;
-  padding: 1.35rem 0 1.35rem 2rem;
+  padding: 1.35rem 0;
   border-top: 1px solid var(--line);
-  counter-increment: service;
 }
 .service-focus article {
   border-top: 2px solid var(--ink);
@@ -723,16 +723,6 @@ nav .nav-contact:hover {
 }
 .service-focus h4 {
   font-size: 1.35rem;
-}
-.service-groups article::before {
-  content: counter(service, upper-alpha);
-  position: absolute;
-  left: 0;
-  top: 1.45rem;
-  font-family: Syne, Arial, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--rust);
 }
 .service-groups h4 {
   margin-bottom: 0.5rem;
@@ -759,19 +749,30 @@ nav .nav-contact:hover {
 .naics-note p + p {
   margin-top: 0.5rem;
 }
+.other-services {
+  border-top: 1px solid var(--ink);
+  margin-top: 1.5rem;
+}
 .registered-naics {
   border-block: 1px solid var(--ink);
-  margin-top: 1.25rem;
 }
+.other-services summary,
 .registered-naics summary {
   cursor: pointer;
-  padding: 1.25rem 0.5rem;
+  padding: 1.1rem 0.5rem;
   font-weight: 600;
   line-height: 1.5;
 }
+.other-services summary:hover,
 .registered-naics summary:hover {
   color: var(--rust);
   background: var(--paper);
+}
+.summary-detail {
+  display: block;
+  margin-left: 1.15rem;
+  font-weight: 400;
+  color: var(--muted);
 }
 .registered-naics-list {
   display: grid;
@@ -898,7 +899,10 @@ nav .nav-contact:hover {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
-  padding-top: 0.85rem;
+  padding-top: 0.2rem;
+}
+.verification-intro {
+  font-size: 1rem;
 }
 .verification-links {
   list-style: none;
@@ -1128,6 +1132,9 @@ nav .nav-contact:hover {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+.form-trap {
+  display: none;
+}
 .contact-section .fieldset-hint,
 .contact-section .field-hint {
   font-size: 0.9375rem;
@@ -1281,7 +1288,7 @@ nav .nav-contact:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .service-additional {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .company-data {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1539,7 +1546,7 @@ nav .nav-contact:hover {
     padding: 0.6rem;
   }
   .hero-copy > .eyebrow {
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.06em;
   }
   .hero h1 {
@@ -1556,7 +1563,7 @@ nav .nav-contact:hover {
   .button {
     padding: 0.9rem;
     gap: 0.65rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
   .eyebrow {
     margin-bottom: 1.1rem;

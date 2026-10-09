@@ -55,6 +55,8 @@ const inquiryType = contactForm.querySelector("#inquiry-type");
 const vendorFields = contactForm.querySelector("#vendor-fields");
 const companyInput = contactForm.querySelector("#form-company");
 const companyOptional = contactForm.querySelector("#company-optional");
+const messageHint = contactForm.querySelector("#message-hint");
+const subjectField = contactForm.querySelector("#form-subject");
 const formStatus = contactForm.querySelector(".form-status");
 const submitButton = contactForm.querySelector('[type="submit"]');
 const inquiryOptions = {
@@ -64,6 +66,16 @@ const inquiryOptions = {
   general: "General Inquiry",
 };
 const vendorOption = inquiryOptions.vendor;
+// What to put in the message for each inquiry type.
+const messageHints = {
+  [inquiryOptions.government]:
+    "Include the agency, the requirement or solicitation number, the place of performance, and your timeline.",
+  [inquiryOptions.teaming]:
+    "Include the solicitation number, agency, the scope you want us to perform, and your response deadline.",
+  [inquiryOptions.vendor]:
+    "Describe the work your company performs and any federal or government experience. Use the fields above for NAICS codes, UEI, and your capabilities link.",
+  [inquiryOptions.general]: "Tell us briefly what you need.",
+};
 const fallbackMessage = "Please email nick@chameleonlabs.ai directly.";
 
 function syncVendorFields() {
@@ -73,6 +85,8 @@ function syncVendorFields() {
   // Subcontractor submissions come from companies, so the company name is required.
   companyInput.required = isVendor;
   companyOptional.hidden = isVendor;
+  messageHint.textContent = messageHints[inquiryType.value];
+  subjectField.value = `Bridge Gap Solutions inquiry: ${inquiryType.value}`;
 }
 
 function setStatus(message, state) {
@@ -120,7 +134,7 @@ contactForm.addEventListener("submit", async (event) => {
     contactForm.reset();
     syncVendorFields();
     setStatus(
-      "Thank you. Your message was sent. We reply by email.",
+      "Thank you. Your inquiry was sent. We will reply by email.",
       "success",
     );
   } catch (error) {
